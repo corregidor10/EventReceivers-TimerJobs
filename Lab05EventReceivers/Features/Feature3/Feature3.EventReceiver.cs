@@ -31,6 +31,12 @@ namespace Lab05EventReceivers.Features.Feature3
 
         // Uncomment the method below to handle the event raised after a feature has been activated.
 
+        public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
+        {
+            SPWebApplication webApplication = ((SPSite)properties.Feature.Parent).WebApplication;
+            deleteJob(webApplication);
+        }
+
         public override void FeatureActivated(SPFeatureReceiverProperties properties)
         {
             SPWebApplication webApplication = ((SPSite)properties.Feature.Parent).WebApplication;
@@ -54,11 +60,7 @@ namespace Lab05EventReceivers.Features.Feature3
 
         // Uncomment the method below to handle the event raised before a feature is deactivated.
 
-        public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
-        {
-            SPWebApplication webApplication = ((SPSite) properties.Feature.Parent).WebApplication;
-            deleteJob(webApplication);
-        }
+
 
 
         // Uncomment the method below to handle the event raised after a feature has been installed.

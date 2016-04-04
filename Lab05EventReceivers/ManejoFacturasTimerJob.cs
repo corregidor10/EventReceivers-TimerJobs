@@ -38,11 +38,11 @@ namespace Lab05EventReceivers
 
                     foreach (SPSite departmentSite in this.WebApplication.Sites)
                     {
-                        using (SPWeb departmentWeb=departmentSite.RootWeb)
+                        using (SPWeb departmentWeb = departmentSite.RootWeb)
                         {
                             SPList expensesList = departmentWeb.Lists.TryGetList("Facturas");
 
-                            if (expensesList!=null)
+                            if (expensesList != null)
                             {
                                 double departmentTotal = 0;
                                 foreach (SPListItem expense in departmentWeb.Lists["Facturas"].Items)
@@ -57,8 +57,8 @@ namespace Lab05EventReceivers
 
                                 SPListItem overviewItem = overviewList.Items.Add();
 
-                                overviewItem["Title"] = hostNameComponents[0];
-                                overviewItem["ImporteTotal."] = departmentTotal;
+                                overviewItem["Title"] = hostNameComponents[0]; //Nombre host=Title
+                                overviewItem["ImporteTotal"] = departmentTotal; // sumatorio de facturas por vm
                                 overviewItem.Update();
                                 overviewList.Update();
                             }
